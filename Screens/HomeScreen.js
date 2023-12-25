@@ -7,6 +7,9 @@ export default function HomeScreen({ navigation, route }) {
   const handleNavigation = (screenName) => {
     navigation.navigate(screenName);
   };
+  const handleLectureNavigation = (selectedLanguage )=> {
+    navigation.navigate('Lectures', { selectedLanguage: selectedLanguage });
+  }
 
   return (
     <View style={styles.container}>
@@ -14,7 +17,7 @@ export default function HomeScreen({ navigation, route }) {
 
       <TouchableOpacity
         style={styles.button}
-        onPress={() => handleNavigation('Lectures')}
+        onPress={() => handleLectureNavigation('Lectures')}
       >
         <Text style={styles.buttonText}>Lectures</Text>
       </TouchableOpacity>
