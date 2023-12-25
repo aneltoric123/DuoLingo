@@ -8,7 +8,7 @@ import HomeScreen from './Screens/HomeScreen';
 import LecturesScreen from './Screens/LecturesScreen';
 import ExercisesScreen from './Screens/ExercisesScreen.js';
 import SettingsScreen from './Screens/SettingsScreen.js';
-import { DarkModeProvider } from './darkmodecontext.js';
+
 
 
 const Stack = createStackNavigator();
