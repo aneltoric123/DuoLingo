@@ -3,15 +3,16 @@ import React from 'react';
 import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
 
 const languages = [
-  { id: 1, name: 'Francoščina' },
-  { id: 2, name: 'Angleščina' },
-  { id: 3, name: 'Nemščina' },
-  { id: 4, name: 'Španščina' },
+  { id: 1, name: 'Francoščina', url: 'https://www.youtube.com/watch?v=9q7nx6kzvD0' },
+  { id: 2, name: 'Angleščina', url: 'https://www.youtube.com/watch?v=QXVzmzhxWWc' },
+  { id: 3, name: 'Nemščina', url: 'https://www.youtube.com/watch?v=6Ka_3Rq8JZ4' },
+  { id: 4, name: 'Španščina', url: 'https://www.youtube.com/watch?v=qE-03EATjho' },
 ];
 
 export default function LanguageSelectionScreen({ navigation }) {
   const handleLanguageSelection = (language) => {
-    navigation.navigate('Home', { selectedLanguage: language });
+    const selectedLanguage = languages.find((lang) => lang.name === language.name);
+    navigation.navigate('Home', { selectedLanguage });
   };
   return (
     

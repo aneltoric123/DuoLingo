@@ -1,29 +1,22 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import Video from 'react-native-video';
-
-const languageVideos = {
-  Angleščina: 'https://www.youtube.com/watch?v=QXVzmzhxWWc',
-  Nemščina: 'https://www.youtube.com/watch?v=6Ka_3Rq8JZ4',
-  Spanščina: 'https://www.youtube.com/watch?v=qE-03EATjho',
-  Francoščina: 'https://www.youtube.com/watch?v=9q7nx6kzvD0',
-};
+import { View, Text, StyleSheet, TouchableOpacity, Linking } from 'react-native';
 
 export default function LecturesScreen({ route }) {
   const { selectedLanguage } = route.params;
-  const videoURL = languageVideos[selectedLanguage.name];
+  const { url } = selectedLanguage;
+
+  const openVideoLink = () => {
+    if (url) {
+      Linking.openURL(url);
+    }
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Lectures</Text>
-      {videoURL && (
-        <Video
-          source={{ uri: videoURL }}
-          style={styles.videoPlayer}
-          controls={true}
-          paused={true}
-        />
-      )}
+      <Text style={styles.header}>Lecture</Text>
+      <TouchableOpacity onPress={openVideoLink} style={styles.button}>
+        <Text style={styles.buttonText}>Watch Lecture on YouTube</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -40,8 +33,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 20,
   },
-  videoPlayer: {
-    width: '100%',
-    height: 300, // Adjust height as needed
+  button: {
+    backgroundColor: '#4287f5',
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    borderRadius: 8,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
   },
 });

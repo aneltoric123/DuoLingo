@@ -3,21 +3,20 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 export default function HomeScreen({ navigation, route }) {
   const { selectedLanguage } = route.params;
+  console.log('Selected Language in HomeScreen:', selectedLanguage);
 
   const handleNavigation = (screenName) => {
-    navigation.navigate(screenName);
+    navigation.navigate(screenName, { selectedLanguage });
   };
-  const handleLectureNavigation = (selectedLanguage )=> {
-    navigation.navigate('Lectures', { selectedLanguage: selectedLanguage });
-  }
+
 
   return (
     <View style={styles.container}>
       <Text style={styles.header}> Vi ste izbrali: {selectedLanguage.name}</Text>
-
+     
       <TouchableOpacity
         style={styles.button}
-        onPress={() => handleLectureNavigation('Lectures')}
+        onPress={() => handleNavigation('Lectures')}
       >
         <Text style={styles.buttonText}>Lectures</Text>
       </TouchableOpacity>
