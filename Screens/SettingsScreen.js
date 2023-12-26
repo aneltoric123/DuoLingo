@@ -9,12 +9,12 @@ export default function SettingsScreen({ navigation }) {
     navigation.navigate('LanguageSelection');
   };
 
-  const aboutText = "Duolingo is an amazing app! :)"; // Replace with your about text
+  const aboutText = "Duolingo je neverjetna aplikacija! :)"; // Replace with your about text
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <TouchableOpacity onPress={changeLanguage} style={styles.button}>
-        <Text>Change Language</Text>
+        <Text>Spremeni jezik!</Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => setIsModalVisible(true)} style={styles.button}>

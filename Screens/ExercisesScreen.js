@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+
 import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
 
-const wordBank = {
+const initialWordBank = {
   Angleščina: ['apple', 'banana', 'orange', 'grape'],
   Nemščina: ['apfel', 'banane', 'orange', 'traube'],
   Španščina: ['manzana', 'plátano', 'naranja', 'uva'],
@@ -14,6 +15,7 @@ export default function ExercisesScreen({ route }) {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [userInput, setUserInput] = useState('');
   const [feedback, setFeedback] = useState('');
+  const [wordBank, setWordBank] = useState(initialWordBank);
 
   const wordsForSelectedLanguage = wordBank[selectedLanguage.name];
   const slovenianWords = wordBank['Slovenščina'];
@@ -36,9 +38,30 @@ export default function ExercisesScreen({ route }) {
     }
   };
 
+  const [showAddWordPopup, setShowAddWordPopup] = useState(false);
+  const [newWordSelectedLanguage, setNewWordSelectedLanguage] = useState('');
+  const [newWordSlovenian, setNewWordSlovenian] = useState('');
+
+  const handleAddWord = () => {
+    const updatedWordBank = {
+      ...wordBank,
+      [selectedLanguage.name]: [...wordsForSelectedLanguage, newWordSelectedLanguage],
+      Slovenščina: [...slovenianWords, newWordSlovenian],
+    };
+
+    setWordBank(updatedWordBank);
+    setNewWordSelectedLanguage('');
+    setNewWordSlovenian('');
+    setShowAddWordPopup(false);
+  };
+
+  const handleClosePopup = () => {
+    setShowAddWordPopup(false);
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Exercises</Text>
+      <Text style={styles.header}>Vaje</Text>
       <Text>{currentWord}</Text>
       <TextInput
         style={styles.input}
@@ -53,10 +76,44 @@ export default function ExercisesScreen({ route }) {
       <TouchableOpacity style={styles.nextButton} onPress={handleNextWord}>
         <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>
+
+      {/* Popup for adding a new word */}
+      {showAddWordPopup && (
+        <View style={styles.popup}>
+          <TouchableOpacity style={styles.closeButton} onPress={handleClosePopup}>
+            <Text style={styles.closeButtonText}>X</Text>
+          </TouchableOpacity>
+          <Text style={styles.header}>Dodaj novo besedo</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={(text) => setNewWordSelectedLanguage(text)}
+            value={newWordSelectedLanguage}
+            placeholder={`Nova ${selectedLanguage.name} beseda`}
+          />
+          <TextInput
+            style={styles.input}
+            onChangeText={(text) => setNewWordSlovenian(text)}
+            value={newWordSlovenian}
+            placeholder="Slovenski prevod"
+          />
+          <TouchableOpacity style={styles.button} onPress={handleAddWord}>
+            <Text style={styles.buttonText}>Dodaj Besedo</Text>
+          </TouchableOpacity>
+        </View>
+      )}
+
+      {/* Button to toggle the add word popup */}
+      {!showAddWordPopup && (
+        <TouchableOpacity
+          style={styles.addButton}
+          onPress={() => setShowAddWordPopup(!showAddWordPopup)}
+        >
+          <Text style={styles.buttonText}>Dodaj novo besedo</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -94,5 +151,39 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontSize: 18,
+  },
+  popup: {
+    position: 'absolute',
+    top: '30%',
+    left: '10%',
+    width: '80%',
+    backgroundColor: '#fff',
+    padding: 20,
+    borderRadius: 10,
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+  },
+  addButton: {
+    backgroundColor: '#34eb6e',
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    borderRadius: 8,
+    marginTop: 15,
+  },
+  closeButton: {
+    position: 'absolute',
+    top: 5,
+    right: 5,
+    padding: 5,
+  },
+  closeButtonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });

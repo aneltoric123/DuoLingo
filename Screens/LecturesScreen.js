@@ -13,9 +13,9 @@ export default function LecturesScreen({ route }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Lecture</Text>
+      <Text style={styles.header}>{`${selectedLanguage.name} lekcija`}</Text>
       <TouchableOpacity onPress={openVideoLink} style={styles.button}>
-        <Text style={styles.buttonText}>Watch Lecture on YouTube</Text>
+        <Text style={styles.buttonText}>Gledaj lekcijo na Youtube!</Text>
       </TouchableOpacity>
     </View>
   );

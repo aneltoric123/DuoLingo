@@ -18,21 +18,21 @@ export default function HomeScreen({ navigation, route }) {
         style={styles.button}
         onPress={() => handleNavigation('Lectures')}
       >
-        <Text style={styles.buttonText}>Lectures</Text>
+        <Text style={styles.buttonText}>Lekcije</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.button}
         onPress={() => handleNavigation('Exercises')}
       >
-        <Text style={styles.buttonText}>Exercises</Text>
+        <Text style={styles.buttonText}>Vaje</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.button}
         onPress={() => handleNavigation('Settings')}
       >
-        <Text style={styles.buttonText}>Settings</Text>
+        <Text style={styles.buttonText}>Nastavitve</Text>
       </TouchableOpacity>
     </View>
   );
