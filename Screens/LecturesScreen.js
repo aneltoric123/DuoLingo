@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f5f5f5',
+    backgroundColor: 'transparent', 
+    backgroundImage: 'linear-gradient(to right, #4287f5, #34eb6e)',
   },
   header: {
     fontSize: 24,

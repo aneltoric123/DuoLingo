@@ -15,9 +15,8 @@ export default function LanguageSelectionScreen({ navigation }) {
     navigation.navigate('Home', { selectedLanguage });
   };
   return (
-    
       <View style={styles.container}>
-        <Text style={styles.header}>Dobrodošli v DuoLingu!</Text>
+  <Text style={styles.header}>Dobrodošli v DuoLingu!</Text>
         <View style={styles.languageContainer}>
           <Text style={styles.jezikText}>Izberite Jezik!</Text>
           <TouchableOpacity
@@ -53,8 +52,10 @@ export default function LanguageSelectionScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: 'transparent', // Set this to transparent to see the gradient
+    backgroundImage: 'linear-gradient(to right, #4287f5, #34eb6e)',
     flex: 1,
-    backgroundColor: '#f5f5f5',
+   
     alignItems: 'center',
     justifyContent: 'center',
   },

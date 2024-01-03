@@ -21,7 +21,8 @@
     "react-native-webview": "^13.6.3",
     "react-native-youtube": "^2.0.2",
     "react-native-youtube-iframe": "^2.3.0",
-    "react-player": "^2.14.1"
+    "react-player": "^2.14.1",
+    "@expo/webpack-config": "^19.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
